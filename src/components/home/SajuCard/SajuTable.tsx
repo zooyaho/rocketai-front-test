@@ -1,68 +1,80 @@
 import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
 
-const sajuData = {
-  header: ["時", "日", "月", "年"],
-  rows: [
+// 사용자 사주 더미 데이터 정의
+const sajuUserDummyData = [
+  [
+    { title: "傷官", subtitle: "(상관)" },
+    { title: "比肩", subtitle: "(비견)" },
+    { title: "傷官", subtitle: "(상관)" },
+    { title: "傷官", subtitle: "(상관)" },
+  ],
+  [
+    { title: "壬", subtitle: "陽水" },
+    { title: "丁", subtitle: "陰火" },
+    { title: "癸", subtitle: "陰水" },
+    { title: "癸", subtitle: "陰水" },
+  ],
+  [
+    { title: "寅", subtitle: "陽木" },
+    { title: "巳", subtitle: "陰火" },
+    { title: "亥", subtitle: "陰水" },
+    { title: "酉", subtitle: "陰金" },
+  ],
+  [
+    { title: "比肩", subtitle: "(비견)" },
+    { title: "劫財", subtitle: "(겁재)" },
+    { title: "食神", subtitle: "(식신)" },
+    { title: "偏財", subtitle: "(편재)" },
+  ],
+  [
+    { title: "死", subtitle: "(사)" },
+    { title: "帝旺", subtitle: "(제왕)" },
+    { title: "胎", subtitle: "(태)" },
+    { title: "長生", subtitle: "(장생)" },
+  ],
+  [
+    { title: "劫殺", subtitle: "(겁살)" },
+    { title: "地殺", subtitle: "(지살)" },
+    { title: "驛馬殺", subtitle: "(역마살)" },
+    { title: "將星殺", subtitle: "(장성살)" },
+  ],
+  [
+    null,
+    null,
+    [{ title: "天乙", subtitle: "(천을귀인)" }],
     [
-      ["傷官", "(상관)"],
-      ["比肩", "(비견)"],
-      ["傷官", "(상관)"],
-      ["傷官", "(상관)"],
-    ],
-    [
-      ["壬", "陽水"],
-      ["丁", "陰火"],
-      ["癸", "陰水"],
-      ["癸", "陰水"],
-    ],
-    [
-      ["寅", "陽木"],
-      ["巳", "陰火"],
-      ["亥", "陰水"],
-      ["酉", "陰金"],
-    ],
-    [
-      ["比肩", "(비견)"],
-      ["劫財", "(겁재)"],
-      ["食神", "(식신)"],
-      ["偏財", "(편재)"],
-    ],
-    [
-      ["死", "(사)"],
-      ["帝旺", "(제왕)"],
-      ["胎", "(태)"],
-      ["長生", "(장생)"],
-    ],
-    [
-      ["劫殺", "(겁살)"],
-      ["地殺", "(지살)"],
-      ["驛馬殺", "(역마살)"],
-      ["將星殺", "(장성살)"],
-    ],
-    [
-      [], // "(없음)"
-      [], // "(없음)"
-      ["天乙", "(천을귀인)"],
-      [
-        ["天乙", "(천을귀인)"],
-        ["太極", "(태극귀인)"],
-        ["文昌", "(문창귀인)"],
-      ],
+      { title: "天乙", subtitle: "(천을귀인)" },
+      { title: "太極", subtitle: "(태극귀인)" },
+      { title: "文昌", subtitle: "(문창귀인)" },
     ],
   ],
-};
+];
 
+// 셀 데이터 타입 정의
+type SajuCell = { title: string; subtitle: string };
+type SajuCellData = SajuCell | SajuCell[] | null;
+
+// 상단 헤더 및 행 헤더 데이터
+const sajuColHeaders = ["", "時", "日", "月", "年"];
 const sajuRowHeaders = [
-  ["十星", "(십성)"],
-  ["天干", "(천간)"],
-  ["地支", "(지지)"],
-  ["十星", "(십성)"],
-  ["十二運星", "(십이운성)"],
-  ["十二神殺", "(십이신살)"],
-  ["貴人", "(귀인)"],
+  { title: "十星", subtitle: "(십성)" },
+  { title: "天干", subtitle: "(천간)" },
+  { title: "地支", subtitle: "(지지)" },
+  { title: "十星", subtitle: "(십성)" },
+  { title: "十二運星", subtitle: "(십이운성)" },
+  { title: "十二神殺", subtitle: "(십이신살)" },
+  { title: "貴人", subtitle: "(귀인)" },
 ];
 
 const SajuTable = () => {
+  const [sajuUserData, setSajuUserData] = useState<SajuCellData[][]>([]);
+
+  useEffect(() => {
+    // 데이터를 가져오는 동작을 시뮬레이션하기 위해 useEffect + useState를 사용했습니다.
+    setSajuUserData(sajuUserDummyData);
+  }, []);
+
   return (
     <div
       className={cn(
@@ -70,20 +82,17 @@ const SajuTable = () => {
         "border-r-[1px] border-b-[1px] border-black"
       )}
     >
-      {/* header */}
+      {/* Header */}
       <div className={cn("grid grid-cols-5 font-semibold text-[20px]")}>
-        <div
-          className={cn(
-            "flex justify-center items-center border-r-[1px] border-black py-2"
-          )}
-        />
-        {sajuData.header.map((col, i) => (
+        {sajuColHeaders.map((col, i) => (
           <div
             key={i}
             className={cn(
               "flex justify-center items-center py-2",
-              i === sajuData.header.length - 1
+              i === sajuColHeaders.length - 1
                 ? "border-r-0"
+                : i === 0
+                ? "border-black border-r-[1px]"
                 : "border-r-[0.5px] border-saju-table-border-sub"
             )}
           >
@@ -92,8 +101,8 @@ const SajuTable = () => {
         ))}
       </div>
 
-      {/* body */}
-      {sajuData.rows.map((row, rowIdx) => (
+      {/* Body */}
+      {sajuUserData.map((row, rowIdx) => (
         <div
           key={rowIdx}
           className={cn(
@@ -103,16 +112,15 @@ const SajuTable = () => {
               : "border-t-[0.5px] border-saju-table-border-sub"
           )}
         >
-          <div
-            className={cn(
-              "flex flex-col justify-center items-center py-2",
-              "border-r-[1px] border-black"
-            )}
-          >
-            <p className="text-sm font-semibold">{sajuRowHeaders[rowIdx][0]}</p>
-            <p>{sajuRowHeaders[rowIdx][1]}</p>
+          {/* Row Header */}
+          <div className="flex flex-col justify-center items-center py-2 border-r-[1px] border-black">
+            <p className="text-sm font-semibold">
+              {sajuRowHeaders[rowIdx].title}
+            </p>
+            <p>{sajuRowHeaders[rowIdx].subtitle}</p>
           </div>
 
+          {/* Cells */}
           {row.map((cell, cellIdx) => (
             <div
               key={cellIdx}
@@ -123,20 +131,20 @@ const SajuTable = () => {
                   : "border-r-[0.5px] border-saju-table-border-sub"
               )}
             >
-              {cell.length === 0 ? (
-                <p>{"(없음)"}</p>
-              ) : cell.length === 2 ? (
-                <>
-                  <p className="text-sm font-semibold">{cell[0]}</p>
-                  <p>{cell[1]}</p>
-                </>
-              ) : (
-                cell.map((text, textIdx) => (
-                  <div key={textIdx} className={cn(textIdx && "mt-[10px]")}>
-                    <p className="text-sm font-semibold">{text[0]}</p>
-                    <p>{text[1]}</p>
+              {cell === null ? (
+                <p>(없음)</p>
+              ) : Array.isArray(cell) ? (
+                cell.map((item, i) => (
+                  <div key={i} className={cn(i > 0 && "mt-[10px]")}>
+                    <p className="text-sm font-semibold">{item.title}</p>
+                    <p>{item.subtitle}</p>
                   </div>
                 ))
+              ) : (
+                <>
+                  <p className="text-sm font-semibold">{cell.title}</p>
+                  <p>{cell.subtitle}</p>
+                </>
               )}
             </div>
           ))}
