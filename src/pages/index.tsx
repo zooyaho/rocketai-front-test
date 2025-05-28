@@ -1,3 +1,3 @@
 export default function Home() {
-  return <div>HOME</div>;
+  return <div className="relative w-full max-w-md mx-auto">HOME</div>;
 }
