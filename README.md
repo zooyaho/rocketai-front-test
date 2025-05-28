@@ -1,40 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+## 🛠️ 기술 스택
 
-## Getting Started
+- **Framework**: [Next.js (Page Router)](https://nextjs.org/)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **유틸리티**: `clsx` (조건부 className 관리)
 
-First, run the development server:
+## 📁 폴더 구조
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+src/
+├── components/
+│ ├── home/
+│ │   ├── SajuCard/
+│ │   │    ├── SajuHeader.tsx # 사용자 이름 + 생년월일 시각화
+│ │   │    ├── SajuTable.tsx # 사주팔자 정보 테이블
+│ │   │    └── index.tsx
+│ │   └── SpeechBubbleScript.tsx # 웹툰 말풍선 텍스트 그룹
+│ └── SpeechBubbleText.tsx # 개별 말풍선 UI 컴포넌트
+├── lib/
+│ └── utils.ts # cn 함수
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✅ 과제 목표 충족 사항
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- 디자인 시안 1페이지 완성
+- 말풍선 텍스트 직접 삽입 (사용자 이름 반영)
+- max-w-md(448px) 기준 반응형 대응
+- 사주팔자 표를 컴포넌트로 구현
+- 표 데이터는 이미지 대신 텍스트로 출력
+- 모든 해상도에서 레이아웃 유지
+- Tailwind 기본 폰트 사용
+- 컴포넌트 구조로 기능 분리 완료
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## 🌐 배포 링크
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+👉 https://rocketai-front-test.vercel.app (Vercel 배포 완료)
