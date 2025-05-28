@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import SajuHeader from "./SajuHeader";
+import SajuTable from "./SajuTable";
 
 const SajuCard = () => {
   return (
@@ -8,7 +9,7 @@ const SajuCard = () => {
       className={cn(
         "absolute top-[66.5%] left-[12px] right-[12px]",
         "border-[3px] border-saju-card-border",
-        "min-h-[621px] bg-saju-card-bg shadow-saju-card" // TODO: height fit 설정
+        "bg-saju-card-bg shadow-saju-card"
       )}
     >
       {/* 선 ui */}
@@ -46,8 +47,10 @@ const SajuCard = () => {
         height={38}
         className={cn("absolute top-[26px] right-[8px] w-fit")}
       />
-      {/* 상단 문구 */}
+      {/* 상단 사용자 문구 */}
       <SajuHeader />
+      {/* 사주 테이블 */}
+      <SajuTable />
     </div>
   );
 };
