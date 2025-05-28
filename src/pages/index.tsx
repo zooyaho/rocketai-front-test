@@ -1,3 +1,4 @@
+import SajuCard from "@/components/home/SajuCard";
 import SpeechBubbleScript from "@/components/home/SpeechBubbleScript";
 import Image from "next/image";
 
@@ -14,6 +15,8 @@ export default function Home() {
       />
       {/* 말풍선 문구 */}
       <SpeechBubbleScript />
+      {/* 사주 카드 */}
+      <SajuCard />
     </div>
   );
 }

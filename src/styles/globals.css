@@ -5,7 +5,9 @@
 :root {
   --background: #f3f2ef;
   --foreground: #424242;
-  --panel: #f5f3ec;
+  --saju-card-bg: #f5f3ec;
+  --saju-card-border: #1b2f49;
+  --pri-navy: #2b557e;
 }
 
 body {
