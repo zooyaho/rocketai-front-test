@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import SajuHeader from "./SajuHeader";
 
 const SajuCard = () => {
   return (
@@ -13,14 +14,21 @@ const SajuCard = () => {
       {/* 선 ui */}
       <div
         className={cn(
-          "absolute top-0 bottom-0 left-[8px] right-[8px]",
-          "border-r-[1px] border-l-[1px] border-pri-navy"
+          "absolute top-0 bottom-0 left-[8px] w-[1px]",
+          "bg-pri-navy"
         )}
       />
       <div
         className={cn(
-          "absolute top-[8px] bottom-[8px] left-0 right-0",
-          "border-t-[1px] border-b-[1px] border-pri-navy"
+          "absolute top-0 bottom-0 right-[8px] w-[1px] bg-pri-navy"
+        )}
+      />
+      <div
+        className={cn("absolute top-[8px] left-0 right-0 h-[1px] bg-pri-navy")}
+      />
+      <div
+        className={cn(
+          "absolute bottom-[8px] left-0 right-0 h-[1px] bg-pri-navy"
         )}
       />
       {/* 사주 상단 패턴 이미지 */}
@@ -38,6 +46,8 @@ const SajuCard = () => {
         height={38}
         className={cn("absolute top-[26px] right-[8px] w-fit")}
       />
+      {/* 상단 문구 */}
+      <SajuHeader />
     </div>
   );
 };

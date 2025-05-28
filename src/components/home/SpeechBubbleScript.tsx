@@ -37,7 +37,7 @@ const SpeechBubbleScript = () => {
 
   useEffect(() => {
     // 데이터를 가져오는 동작을 시뮬레이션하기 위해 useEffect + useState를 사용했습니다.
-    setName("홍길동");
+    setName("김로켓");
   }, []);
 
   return (
